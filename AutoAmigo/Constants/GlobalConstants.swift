@@ -33,6 +33,6 @@ struct GlobalConstants {
   static var storeInfoURL: String = "http://itunes.apple.com/lookup?bundleId=com.xoait.AutoAmigo"
   static var itunesURL: String = "itms-apps://itunes.apple.com/us/app/apple-store/id1563504584?mt=8"
   
-  static var mapBoxToken = "sk.eyJ1IjoiZG9uZWxreXMiLCJhIjoiY2ttZG9zN3FtMG8waTJ3a2g2bGJ0MXZ6YiJ9.0o9AqCvN3guRbS8kq39KlA"
+  static var mapBoxToken = "pk.eyJ1IjoiZG9uZWxreXMiLCJhIjoiY2tubHRhMmwxMGtscjJ2bnloMm9wOWFydyJ9.TZjHwLdkwB4-qRN555PFkg"
   
 }
