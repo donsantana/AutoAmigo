@@ -31,7 +31,7 @@ extension InicioController: SocketServiceDelegate{
       
       for taxi in taxiList{
         let taxiAnnotation = MGLPointAnnotation()
-        taxiAnnotation.title = "taxi_libre"
+        taxiAnnotation.subtitle = "taxi_libre"
         taxiAnnotation.coordinate = CLLocationCoordinate2D(latitude: taxi["lat"] as! Double,longitude: taxi["lng"] as! Double)
         mapAnnotations.append(taxiAnnotation)
       }
