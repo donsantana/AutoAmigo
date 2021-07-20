@@ -460,29 +460,20 @@ extension InicioController{
       
       let fechaReserva = ""
       
-      let valorOferta = self.tabBar.selectedItem == self.ofertaItem ? Double((self.ofertaDataCell.valorOfertaText.text?.dropFirst())!)! : self.tabBar.selectedItem == self.pactadaItem ? pactadaCell.importe : 0.0
+      let valorOferta = self.tabBar.selectedItem == self.ofertaItem ? Double((self.ofertaDataCell.valorOfertaText.text!.replacingOccurrences(of: ",", with: ".").digitsAndPeriods))! : self.tabBar.selectedItem == self.pactadaItem ? pactadaCell.importe : 0.0
       
-      var tipoServicio = 1
-      
-      switch self.tabBar.selectedItem {
-      case self.taximetroItem:
-        tipoServicio = 2
-      case self.horasItem:
-        tipoServicio = 3
-      case self.pactadaItem:
-        tipoServicio = 4
-      default:
-        tipoServicio = 1
-      }
+      let tipoServicio = self.tabBar.items?.firstIndex(of: self.tabBar.selectedItem!)
+      mapView.removeAnnotations(mapView!.annotations!)
       print(tipoServicio)
+      
 //      let tipoServicio = self.tabBar.items?.firstIndex(of: self.tabBar.selectedItem!)
 //      mapView.removeAnnotations(mapView!.annotations!)
       let isYapa = globalVariables.appConfig.yapa ? pagoYapaCell.pagarYapaSwitch.isOn : false
       let nuevaSolicitud = Solicitud()
       self.contactoCell.contactoNameText.text!.isEmpty ? nuevaSolicitud.DatosCliente(cliente: globalVariables.cliente!) : nuevaSolicitud.DatosOtroCliente(telefono: telefonoContactar!, nombre: nombreContactar!)
-      nuevaSolicitud.DatosSolicitud(id: 0, fechaHora: "", dirOrigen: origen, referenciaOrigen: referencia, dirDestino: destino, latOrigen: origenCoord.latitude, lngOrigen: origenCoord.longitude, latDestino: destinoCoord.latitude, lngDestino: destinoCoord.longitude, valorOferta: valorOferta, detalleOferta: detalleOferta, fechaReserva: fechaReserva, useVoucher: voucher,tipoServicio: tipoServicio,yapa: isYapa)
+      nuevaSolicitud.DatosSolicitud(id: 0, fechaHora: "", dirOrigen: origen, referenciaOrigen: referencia, dirDestino: destino, latOrigen: origenCoord.latitude, lngOrigen: origenCoord.longitude, latDestino: destinoCoord.latitude, lngDestino: destinoCoord.longitude, valorOferta: valorOferta, detalleOferta: detalleOferta, fechaReserva: fechaReserva, useVoucher: voucher,tipoServicio: tipoServicio! + 1,yapa: isYapa)
       
-      if !self.contactoCell.telefonoText.text!.isEmpty{
+      if !self.contactoCell.telefonoText.text!.isEmpty{ 
         nuevaSolicitud.DatosOtroCliente(telefono: self.cleanTextField(textfield: self.contactoCell.telefonoText), nombre: self.cleanTextField(textfield: self.contactoCell.contactoNameText))
       }
       

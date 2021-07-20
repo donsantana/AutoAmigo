@@ -11,7 +11,7 @@ import SideMenu
 
 class SideMenuController: UIViewController {
   
-  var menuArray = [[MenuData(imagen: "nuevaSolicitud", title: "Nuevo viaje"),MenuData(imagen: "enProceso", title: "Viajes en proceso"),MenuData(imagen: "historial", title: "Historial de Viajes")],[MenuData(imagen: "callCenter", title: "Operadora"),MenuData(imagen: "terminos", title: "Términos y condiciones"),MenuData(imagen: "compartir", title: "Compartir app")],[MenuData(imagen: "salir2", title: "Salir")]]//,MenuData(imagen: "card", title: "Mis tarjetas")
+  var menuArray = [[MenuData(imagen: "enProceso", title: "Viajes en proceso"),MenuData(imagen: "historial", title: "Historial de Viajes")],[MenuData(imagen: "callCenter", title: "Operadora"),MenuData(imagen: "terminos", title: "Términos y condiciones"),MenuData(imagen: "compartir", title: "Compartir app")],[MenuData(imagen: "salir2", title: "Salir")]]//,MenuData(imagen: "card", title: "Mis tarjetas"),MenuData(imagen: "nuevaSolicitud", title: "Nuevo viaje"),
   
   @IBOutlet weak var MenuView1: UIView!
   @IBOutlet weak var MenuTable: UITableView!

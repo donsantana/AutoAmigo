@@ -58,10 +58,10 @@ class CallCenterController: BaseController {
     // Dispose of any resources that can be recreated.
   }
   
-  override func homeBtnAction() {
-    let vc = R.storyboard.main.inicioView()
-    self.navigationController?.pushViewController(vc!, animated: true)
-  }
+//  override func homeBtnAction() {
+//    let vc = R.storyboard.main.inicioView()
+//    self.navigationController?.pushViewController(vc!, animated: true)
+//  }
 
 }
 

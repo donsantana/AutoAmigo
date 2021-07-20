@@ -20,7 +20,6 @@ extension HistorialController: UITableViewDelegate,UITableViewDataSource{
     return self.historialSolicitudesList.count
   }
 
-
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = Bundle.main.loadNibNamed("HistoryViewCell", owner: self, options: nil)?.first as! HistoryCell
     cell.initContent(solicitud: self.historialSolicitudesList[indexPath.row])
@@ -32,6 +31,7 @@ extension HistorialController: UITableViewDelegate,UITableViewDataSource{
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let vc = R.storyboard.main.historyDetailView()!
     vc.solicitud = self.historialSolicitudesList[indexPath.row]
-    self.navigationController?.show(vc, sender: nil)
+    self.navigationController!.show(vc, sender: nil)
+    tableView.deselectRow(at: indexPath, animated: false)
   }
 }

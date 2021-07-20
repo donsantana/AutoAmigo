@@ -60,7 +60,8 @@ class BaseController: UIViewController {
         backBtn.layer.cornerRadius = backBtn.frame.height/2
         backBtn.addTarget(self, action: #selector(homeBtnAction), for: .touchUpInside)
  
-        //backBtn.backgroundColor = .w
+        backBtn.backgroundColor = .white
+        backBtn.addShadow()
         backBtn.tintColor = hideMenuBtn ? .black : Customization.buttonsTitleColor
         topMenu.addSubview(backBtn)
         topMenu.removeShadow()
@@ -83,6 +84,26 @@ class BaseController: UIViewController {
     
   }
   
+  func goToInicioView(){
+    var inicioVC: [UIViewController] = []
+
+    let viewcontrollers = self.navigationController?.viewControllers
+    viewcontrollers?.forEach({ (vc) in
+      if  let inventoryListVC = vc as? InicioController {
+        inicioVC.append(inventoryListVC)
+      }
+    })
+    
+    if inicioVC.count != 0{
+      print("Hay inicio")
+      self.navigationController!.popToViewController(inicioVC.first!, animated: true)
+    }else{
+      print("No hay inicio")
+      let vc = R.storyboard.main.inicioView()!
+      self.navigationController?.show(vc, sender: self)
+    }
+  }
+  
   //MENU BUTTONS FUNCTIONS
   @objc func closeBtnAction(){
     
@@ -92,7 +113,6 @@ class BaseController: UIViewController {
       try fileAudio.removeItem(atPath: AudioPath)
     }catch{
     }
-    //let datos = "#SocketClose,\(String(describing: globalVariables.cliente.id)),# \n"
     let vc = R.storyboard.main.inicioView()
     vc!.socketService.socketEmit("SocketClose", datos: ["idcliente": globalVariables.cliente.id])
     exit(3)
@@ -101,8 +121,9 @@ class BaseController: UIViewController {
   
   @objc func homeBtnAction(){
     if hideMenuBtn{
-      let vc = R.storyboard.main.inicioView()
-      self.navigationController?.show(vc!, sender: nil)
+      self.goToInicioView()
+//      let vc = R.storyboard.main.inicioView()
+//      self.navigationController?.show(vc!, sender: nil)
     }
   }
   

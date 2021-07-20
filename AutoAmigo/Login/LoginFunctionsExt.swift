@@ -85,27 +85,28 @@ extension LoginController{
         }))
         self.present(locationAlert, animated: true, completion: nil)
       case .authorizedAlways, .authorizedWhenInUse:
-        var vc: UIViewController
-        switch globalVariables.solpendientes.count {
-        case 0:
-          vc = R.storyboard.main.inicioView()!
-          break
-        case 1:
-          if globalVariables.solpendientes.first!.isAceptada(){
-          vc = R.storyboard.main.solDetalles()!
-          (vc as! SolPendController).solicitudPendiente = globalVariables.solpendientes.first!
-          }else{
-            vc = R.storyboard.main.esperaChildView()!
-            (vc as! EsperaChildVC).solicitud = globalVariables.solpendientes.first!
-          }
-          break
-        default:
-          vc = R.storyboard.main.listaSolPdtes()!
-        }
-        DispatchQueue.main.async {
-          self.navigationController?.show(vc, sender: nil)
-        }
-        break
+        self.checkSolPendientes()
+//        var vc: UIViewController
+//        switch globalVariables.solpendientes.count {
+//        case 0:
+//          vc = R.storyboard.main.inicioView()!
+//          break
+//        case 1:
+//          if globalVariables.solpendientes.first!.isAceptada(){
+//          vc = R.storyboard.main.solDetalles()!
+//          (vc as! SolPendController).solicitudPendiente = globalVariables.solpendientes.first!
+//          }else{
+//            vc = R.storyboard.main.esperaChildView()!
+//            (vc as! EsperaChildVC).solicitud = globalVariables.solpendientes.first!
+//          }
+//          break
+//        default:
+//          vc = R.storyboard.main.listaSolPdtes()!
+//        }
+//        DispatchQueue.main.async {
+//          self.navigationController?.show(vc, sender: nil)
+//        }
+//        break
       default:
         break
       }
@@ -131,6 +132,32 @@ extension LoginController{
     }
   }
   
+  func checkSolPendientes(){
+    print("checkSolPendientes")
+    var vc = UIViewController()
+    switch globalVariables.solpendientes.count {
+    case 0:
+      vc = R.storyboard.main.inicioView()!
+      break
+    case 1:
+      if globalVariables.solpendientes.first!.isAceptada(){
+        vc = R.storyboard.main.solDetalles()!
+        (vc as! SolPendController).solicitudPendiente = globalVariables.solpendientes.first!
+      }else{
+        vc = R.storyboard.main.esperaChildView()!
+        (vc as! EsperaChildVC).solicitud = globalVariables.solpendientes.first!
+      }
+      //self.navigationController?.show(vc, sender: self)
+      break
+    default:
+      let vc = R.storyboard.main.listaSolPdtes()!
+      
+    }
+    
+    self.navigationController?.show(vc, sender: self)
+    
+  }
+  
   //FUNCION PARA LISTAR SOLICITUDES PENDIENTES
   func ListSolicitudPendiente(_ listado : [[String: Any]]){
     //#LoginPassword,loginok,idusuario,idrol,idcliente,nombreapellidos,cantsolpdte,idsolicitud,idtaxi,cod,fechahora,lattaxi,lngtaxi, latorig,lngorig,latdest,lngdest,telefonoconductor
@@ -138,7 +165,7 @@ extension LoginController{
     while i < listado.count {
       let data = listado[i]
       let solicitudpdte = Solicitud()
-      solicitudpdte.DatosSolicitud(id: data["idsolicitud"] as! Int, fechaHora: data["fechahora"] as! String, dirOrigen: data["dirorigen"] as! String, referenciaOrigen: data["referenciaorigen"] as! String, dirDestino: !(data["dirdestino"] is NSNull) ? data["dirdestino"] as! String : "", latOrigen: data["latorigen"] as! Double, lngOrigen: data["lngorigen"] as! Double, latDestino: !(data["latdestino"] is NSNull) ? data["latdestino"] as! Double : 0.0, lngDestino: !(data["lngdestino"] is NSNull) ? data["lngdestino"] as! Double : 0.0, valorOferta: !(data["importe"] is NSNull) ? data["importe"] as! Double : 0.0, detalleOferta: !(data["detalleoferta"] is NSNull) ? data["detalleoferta"] as! String : "", fechaReserva: !(data["fechareserva"] is NSNull) ? data["fechareserva"] as! String : "", useVoucher: !(data["nvoucher"] is NSNull) ? "1" : "0", tipoServicio: data["tiposervicio"] as! Int,yapa: data["yapa"] as! Bool)
+      solicitudpdte.DatosSolicitud(id: data["idsolicitud"] as! Int, fechaHora: data["fechahora"] as! String, dirOrigen: data["dirorigen"] as! String, referenciaOrigen: !(data["referenciaorigen"] is NSNull) ? data["referenciaorigen"] as! String : "", dirDestino: !(data["dirdestino"] is NSNull) ? data["dirdestino"] as! String : "", latOrigen: data["latorigen"] as! Double, lngOrigen: data["lngorigen"] as! Double, latDestino: !(data["latdestino"] is NSNull) ? data["latdestino"] as! Double : 0.0, lngDestino: !(data["lngdestino"] is NSNull) ? data["lngdestino"] as! Double : 0.0, valorOferta: !(data["importe"] is NSNull) ? data["importe"] as! Double : 0.0, detalleOferta: !(data["detalleoferta"] is NSNull) ? data["detalleoferta"] as! String : "", fechaReserva: !(data["fechareserva"] is NSNull) ? data["fechareserva"] as! String : "", useVoucher: !(data["nvoucher"] is NSNull) ? "1" : "0", tipoServicio: data["tiposervicio"] as! Int,yapa: data["yapa"] as! Bool)
   
       solicitudpdte.DatosCliente(cliente: globalVariables.cliente)
       

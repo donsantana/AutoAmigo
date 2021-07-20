@@ -143,6 +143,8 @@
 		C6D3199025916F8500A4BF1C /* Muli-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C6D3198625916F8500A4BF1C /* Muli-Bold.ttf */; };
 		C6D67957228BAFFC00C74B6E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6D67956228BAFFC00C74B6E /* Launch Screen.storyboard */; };
 		C6D7EE7326291A1700F42FF0 /* InicioSocketExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D7EE7226291A1700F42FF0 /* InicioSocketExt.swift */; };
+		C6DB133026A60402007DEC68 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DB132F26A60402007DEC68 /* Character.swift */; };
+		C6DB133226A60426007DEC68 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DB133126A60426007DEC68 /* String.swift */; };
 		C6F0BB1923B7049E00266396 /* SolPendientesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6F0BB1823B7049E00266396 /* SolPendientesCell.xib */; };
 		C6F0BB1B23B7053800266396 /* SolPendientesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F0BB1A23B7053800266396 /* SolPendientesViewCell.swift */; };
 		C6F27B08238F2C5400679E07 /* SolicitudHistorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F27B07238F2C5400679E07 /* SolicitudHistorial.swift */; };
@@ -298,6 +300,8 @@
 		C6D3198625916F8500A4BF1C /* Muli-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Muli-Bold.ttf"; sourceTree = "<group>"; };
 		C6D67956228BAFFC00C74B6E /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		C6D7EE7226291A1700F42FF0 /* InicioSocketExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InicioSocketExt.swift; path = AutoAmigo/Inicio/InicioSocketExt.swift; sourceTree = SOURCE_ROOT; };
+		C6DB132F26A60402007DEC68 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		C6DB133126A60426007DEC68 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		C6F0BB1823B7049E00266396 /* SolPendientesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SolPendientesCell.xib; sourceTree = "<group>"; };
 		C6F0BB1A23B7053800266396 /* SolPendientesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolPendientesViewCell.swift; sourceTree = "<group>"; };
 		C6F27B07238F2C5400679E07 /* SolicitudHistorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolicitudHistorial.swift; sourceTree = "<group>"; };
@@ -618,6 +622,8 @@
 				C63445A425979EE900ABEC47 /* CGFloat.swift */,
 				C68D05A3259CA2BE00E124AB /* MGLPointAnnotation.swift */,
 				C61FC67325FBC3E0005C02F3 /* UIImageView.swift */,
+				C6DB132F26A60402007DEC68 /* Character.swift */,
+				C6DB133126A60426007DEC68 /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1069,6 +1075,7 @@
 				AF3D9E1C1FA51D910019432B /* Perfil2ViewCell.swift in Sources */,
 				B5054D771E66051500FEEDE4 /* SolDetallesController.swift in Sources */,
 				C6F27B08238F2C5400679E07 /* SolicitudHistorial.swift in Sources */,
+				C6DB133226A60426007DEC68 /* String.swift in Sources */,
 				C62E84F8259A0C630048FB0C /* AddressMapExt.swift in Sources */,
 				C602558824AAEA4700C91725 /* CardViewCell.swift in Sources */,
 				AF3D9E201FA61F580019432B /* Perfil3ViewCell.swift in Sources */,
@@ -1106,6 +1113,7 @@
 				C6A37F0B2554AB4C00C79BFF /* SolicitudStatus.swift in Sources */,
 				C63445A525979EE900ABEC47 /* CGFloat.swift in Sources */,
 				C6A37F15255504D600C79BFF /* HistorialDetailsController.swift in Sources */,
+				C6DB133026A60402007DEC68 /* Character.swift in Sources */,
 				AFD655DA1F9D391000C8A5BD /* CompletadaController.swift in Sources */,
 				C6CACFAD22D26A9300702430 /* Oferta.swift in Sources */,
 				C65F9F32229E39CE00E3E304 /* PagoViewCell.swift in Sources */,
@@ -1288,7 +1296,7 @@
 				LD_DYLIB_INSTALL_NAME = "@rpath";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.xoait.AutoAmigo;
 				PRODUCT_NAME = AutoAmigo;
@@ -1323,7 +1331,7 @@
 				LD_DYLIB_INSTALL_NAME = "@rpath";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.xoait.AutoAmigo;
 				PRODUCT_NAME = AutoAmigo;

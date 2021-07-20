@@ -75,8 +75,8 @@ class SolPendController: BaseController, MKMapViewDelegate, UITextViewDelegate,U
   @IBOutlet weak var radioBtnLoadingConstraint: NSLayoutConstraint!
   
   override func viewDidLoad() {
-    super.hideMenuBtn = false
-    super.hideCloseBtn = false
+    super.hideMenuBtn = true
+    super.hideCloseBtn = true
     super.barTitle = ""
     //super.topMenu.bringSubviewToFront(self.formularioSolicitud)
     super.viewDidLoad()
@@ -329,32 +329,31 @@ class SolPendController: BaseController, MKMapViewDelegate, UITextViewDelegate,U
     let titleString = NSAttributedString(string: "¿Por qué cancela el viaje?", attributes: titleAttributes)
     motivoAlerta.setValue(titleString, forKey: "attributedTitle")
     
-    motivoAlerta.addAction(UIAlertAction(title: "Mucho tiempo de espera", style: .default, handler: { action in
-      self.CancelarSolicitud("Mucho tiempo de espera")
-    }))
-    motivoAlerta.addAction(UIAlertAction(title: "El taxi no se mueve", style: .default, handler: { action in
-      self.CancelarSolicitud("El taxi no se mueve")
-    }))
-    motivoAlerta.addAction(UIAlertAction(title: "El conductor se fue a una dirección equivocada", style: .default, handler: { action in
-      self.CancelarSolicitud("El conductor se fue a una dirección equivocada")
-    }))
-    motivoAlerta.addAction(UIAlertAction(title: "Ubicación incorrecta", style: .default, handler: { action in
-      self.CancelarSolicitud("Ubicación incorrecta")
-    }))
-    motivoAlerta.addAction(UIAlertAction(title: "Otro", style: .default, handler: { action in
-      let ac = UIAlertController(title: "Entre el motivo", message: nil, preferredStyle: .alert)
-      ac.addTextField()
-      
-      let submitAction = UIAlertAction(title: "Enviar", style: .default) { [unowned ac] _ in
-        if !ac.textFields![0].text!.isEmpty{
-          self.CancelarSolicitud(ac.textFields![0].text!)
-        }
+    for i in 0...Customization.motivosCancelacion.count - 1{
+      if i == Customization.motivosCancelacion.count - 1{
+        motivoAlerta.addAction(UIAlertAction(title: Customization.motivosCancelacion[i], style: .default, handler: { action in
+          let ac = UIAlertController(title: Customization.motivosCancelacion[i], message: nil, preferredStyle: .alert)
+          ac.addTextField()
+          
+          let submitAction = UIAlertAction(title: "Enviar", style: .default) { [unowned ac] _ in
+            if !ac.textFields![0].text!.isEmpty{
+              self.CancelarSolicitud(ac.textFields![0].text!)
+            }
+          }
+          
+          ac.addAction(submitAction)
+          
+          self.present(ac, animated: true)
+        }))
+      }else{
+        motivoAlerta.addAction(UIAlertAction(title: Customization.motivosCancelacion[i], style: .default, handler: { action in
+          self.CancelarSolicitud(Customization.motivosCancelacion[i])
+        }))
       }
-      ac.addAction(submitAction)
-      self.present(ac, animated: true)
-    }))
+    }
     motivoAlerta.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: { action in
     }))
+    
     self.present(motivoAlerta, animated: true, completion: nil)
   }
   
@@ -409,9 +408,9 @@ class SolPendController: BaseController, MKMapViewDelegate, UITextViewDelegate,U
     self.present(alertaDos, animated: true, completion: nil)
   }
   
-  override func homeBtnAction() {
-    present(sideMenu!, animated: true)
-  }
+//  override func homeBtnAction() {
+//    present(sideMenu!, animated: true)
+//  }
   
   override func closeBtnAction() {
     let panicoViewController = storyboard?.instantiateViewController(withIdentifier: "panicoChildVC") as! PanicoController

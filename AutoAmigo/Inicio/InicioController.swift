@@ -70,7 +70,7 @@ class InicioController: BaseController, CLLocationManagerDelegate, URLSessionDel
   //Menu variables
   var sideMenu: SideMenuNavigationController?
   
-  var menuArray = [[MenuData(imagen: "solicitud", title: "Viajes en proceso"),MenuData(imagen: "historial", title: "Historial de Viajes")],[MenuData(imagen: "callCenter", title: "Operadora"),MenuData(imagen: "terminos", title: "Términos y condiciones"),MenuData(imagen: "compartir", title: "Compartir app")],[MenuData(imagen: "salir2", title: "Salir")]]//,MenuData(imagen: "card", title: "Mis tarjetas")
+//  var menuArray = [[MenuData(imagen: "solicitud", title: "Viajes en proceso"),MenuData(imagen: "historial", title: "Historial de Viajes")],[MenuData(imagen: "callCenter", title: "Operadora"),MenuData(imagen: "terminos", title: "Términos y condiciones"),MenuData(imagen: "compartir", title: "Compartir app")],[MenuData(imagen: "salir2", title: "Salir")]]//,MenuData(imagen: "card", title: "Mis tarjetas")
   var ofertaItem = UITabBarItem(title: "", image: UIImage(named: "tipoOferta"), selectedImage: UIImage(named: "tipoOferta")!.addBorder(radius: 10, color: Customization.tabBorderColor))
   var taximetroItem = UITabBarItem(title: "", image: UIImage(named: "tipoTaximetro"), selectedImage: UIImage(named: "tipoTaximetro")!.addBorder(radius: 10, color: Customization.tabBorderColor))
   var horasItem = UITabBarItem(title: "", image: UIImage(named: "tipoHoras"), selectedImage: UIImage(named: "tipoHoras")!.addBorder(radius: 10, color: Customization.tabBorderColor))
@@ -362,20 +362,40 @@ class InicioController: BaseController, CLLocationManagerDelegate, URLSessionDel
   @IBAction func getAddressText(_ sender: Any) {
     if self.searchingAddress == "destino"{
       if !(self.panelController.state == .collapsed){
-        self.destinoAnnotation.updateAnnotation(newCoordinate: self.origenAnnotation.coordinate, newTitle: self.searchController.searchEngine.query)
+        //self.destinoAnnotation.updateAnnotation(newCoordinate: self.origenAnnotation.coordinate, newTitle: self.searchController.searchEngine.query)
         self.getDestinoFromSearch(annotation: self.destinoAnnotation)
       }else{
         self.getDestinoFromSearch(annotation: self.destinoAnnotation)
       }
+      self.getAddressFromCoordinate(self.destinoAnnotation)
+      print("destino \(self.destinoCell.destinoText.text)")
     }else{
       if !(self.panelController.state == .collapsed){
         self.origenAnnotation.title = self.searchController.searchEngine.query
+        //self.origenCell.origenText.text = self.origenAnnotation.title
       }else{
         self.getAddressFromCoordinate(self.origenAnnotation)
       }
-      self.origenCell.origenText.text = self.origenAnnotation.title
+      
     }
     self.hideSearchPanel()
+    
+//    if self.searchingAddress == "destino"{
+//      if !(self.panelController.state == .collapsed){
+//        self.destinoAnnotation.updateAnnotation(newCoordinate: self.origenAnnotation.coordinate, newTitle: self.searchController.searchEngine.query)
+//        self.getDestinoFromSearch(annotation: self.destinoAnnotation)
+//      }else{
+//        self.getDestinoFromSearch(annotation: self.destinoAnnotation)
+//      }
+//    }else{
+//      if !(self.panelController.state == .collapsed){
+//        self.origenAnnotation.title = self.searchController.searchEngine.query
+//      }else{
+//        self.getAddressFromCoordinate(self.origenAnnotation)
+//      }
+//      self.origenCell.origenText.text = self.origenAnnotation.title
+//    }
+//    self.hideSearchPanel()
   } 
 }
 

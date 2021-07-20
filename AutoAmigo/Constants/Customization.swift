@@ -14,6 +14,7 @@ struct Customization {
   static var appName: String!
   static var nameShowed: String = "AutoAmigo"
   static var logo: UIImage!
+  static var motivosCancelacion = ["Mucho tiempo de espera","Me solicitó el conductor","El conductor no se comunica","Ubicación incorrecta","Ya no lo necesito","Solo probaba la aplición","otro"]
   static var primaryColor: UIColor = .white //#1f1f1f
   static var secundaryColor: UIColor = UIColor(red: 222/255, green: 11/255, blue: 19/255, alpha: 1)
   static var viewBackgroundColor: UIColor = UIColor(red: 7/255, green: 9/255, blue: 24/255, alpha: 1)

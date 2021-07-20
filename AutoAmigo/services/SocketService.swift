@@ -30,7 +30,7 @@ protocol SocketServiceDelegate: class {
   func socketResponse(_ controller: SocketService, recargaryapa result: [String: Any])
   func socketResponse(_ controller: SocketService, historialdesolicitudes result: [String: Any])
   func socketResponse(_ controller: SocketService, conectionError errorMessage: String)
-  
+  func socketResponse(_ controller: SocketService, detallehistorialdesolicitud result: [String: Any])
 }
 
 
@@ -75,6 +75,7 @@ final class SocketService{
     globalVariables.socket.off("geocliente")
     globalVariables.socket.off("aceptaroferta")
     globalVariables.socket.off("historialdesolicitudes")
+    globalVariables.socket.off("detallehistorialdesolicitud")
   }
   
   func initLoginEventos(){
@@ -215,13 +216,24 @@ final class SocketService{
       let result = data[0] as! [String: Any]
       self.delegate?.socketResponse(self, recargaryapa: result)
     }
-    
+  }
+  
+  func initHistorialEvents(){
+    globalVariables.socket.off("historialdesolicitudes")
     globalVariables.socket.on("historialdesolicitudes"){data, ack in
       let result = data[0] as! [String: Any]
-      print("hereeeeee \(result)")
+      print("historialdesolicitudes \(result)")
       self.delegate?.socketResponse(self, historialdesolicitudes: result)
     }
-    
+  }
+  
+  func initHistorialDetallesEvents(){
+    globalVariables.socket.off("detallehistorialdesolicitud")
+    globalVariables.socket.on("detallehistorialdesolicitud"){data, ack in
+      let result = data[0] as! [String: Any]
+      print("detallesHistorial \(result)")
+      self.delegate?.socketResponse(self, detallehistorialdesolicitud: result)
+    }
   }
 }
 
@@ -245,5 +257,6 @@ extension SocketServiceDelegate{
   func socketResponse(_ controller: SocketService, geocliente result: [String: Any]){}
   func socketResponse(_ controller: SocketService, recargaryapa result: [String: Any]){}
   func socketResponse(_ controller: SocketService, historialdesolicitudes result: [String: Any]){}
+  func socketResponse(_ controller: SocketService, detallehistorialdesolicitud result: [String: Any]){}
   func socketResponse(_ controller: SocketService, conectionError errorMessage: String){}
 }
